@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EchoVerse Learning Roadmap</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .project-title {
+            color: #4a5568;
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .subtitle {
+            color: #718096;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+        
+        .progress-overview {
+            background: #f7fafc;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #48bb78, #38a169);
+            width: 0%;
+            transition: width 0.5s ease;
+            border-radius: 10px;
+        }
+        
+        .phases {
+            display: grid;
+            gap: 25px;
+        }
+        
+        .phase {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-left: 5px solid #667eea;
+            transition: transform 0.3s ease;
+        }
+        
+        .phase:hover {
+            transform: translateY(-5px);
+        }
+        
+        .phase-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+        
+        .phase-title {
+            color: #2d3748;
+            font-size: 1.4em;
+            font-weight: bold;
+        }
+        
+        .phase-duration {
+            background: #edf2f7;
+            color: #4a5568;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .skill-item {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .skill-item:hover {
+            background: #e2e8f0;
+        }
+        
+        .skill-item.completed {
+            background: #c6f6d5;
+            border-color: #48bb78;
+        }
+        
+        .skill-checkbox {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+        
+        .skill-name {
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 5px;
+        }
+        
+        .skill-description {
+            color: #718096;
+            font-size: 0.9em;
+            line-height: 1.4;
+        }
+        
+        .resources {
+            background: #fef5e7;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+        
+        .resources-title {
+            color: #744210;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .resource-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .resource-link {
+            background: #fed7aa;
+            color: #9a3412;
+            padding: 5px 12px;
+            border-radius: 15px;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: background 0.3s ease;
+        }
+        
+        .resource-link:hover {
+            background: #fdba74;
+        }
+        
+        .milestone {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: center;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .stat {
+            text-align: center;
+            background: #f7fafc;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .stat-label {
+            color: #718096;
+            font-size: 0.9em;
+        }
+        
+        .collapse-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .collapse-content.expanded {
+            max-height: 2000px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="project-title">🎧 EchoVerse Development Roadmap</h1>
+            <p class="subtitle">Your path to building an AI-powered audiobook creation tool</p>
+        </div>
+        
+        <div class="progress-overview">
+            <h3>Overall Progress</h3>
+            <div class="progress-bar">
+                <div class="progress-fill" id="overallProgress"></div>
+            </div>
+            <p id="progressText">0% Complete</p>
+            
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number" id="completedSkills">0</div>
+                    <div class="stat-label">Skills Learned</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number" id="totalSkills">32</div>
+                    <div class="stat-label">Total Skills</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number" id="estimatedWeeks">16-24</div>
+                    <div class="stat-label">Est. Weeks</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="phases">
+            <div class="phase">
+                <div class="phase-header" onclick="togglePhase('phase1')">
+                    <h2 class="phase-title">🐍 Phase 1: Python Foundations</h2>
+                    <span class="phase-duration">3-4 weeks</span>
+                </div>
+                <div class="collapse-content expanded" id="phase1">
+                    <div class="skills-grid">
+                        <div class="skill-item" onclick="toggleSkill(this)">
+                            <input type="checkbox" class="skill-checkbox">
+                            <div class="skill-name">Python Basics</div>
+                            <div class="skill-description">Variables, data types, control structures, functions</div>
+                        </div>
+                        <div class="skill-item" onclick="toggleSkill(this)">
+                            <input type="checkbox" class="skill-checkbox">
+                            <div class="skill-name">File Handling</div>
+                            <div class="skill-description">Reading/writing .txt files for EchoVerse input</div>
+                        </div>
+                        <div class="skill-item" onclick="toggleSkill(this)">
+                            <input type="checkbox" class="skill-checkbox">
+                            <div class="skill-name">Error Handling</div>
+                            <div class="skill-description">Try/except blocks for robust applications</div>
+                        </div>
+                        <div class="skill-item" onclick="toggleSkill(this)">
+                            <input type="checkbox" class="skill-checkbox">
+                            <div class="skill-name">Virtual Environments</div>
+                            <div class="skill-description">Managing dependencies with pip and venv</div>
+                        </div>
+                    </div>
+                    <div class="milestone">🎯 Milestone: Build a simple text file processor</div>
+                    <div class="resources">
+                        <div class="resources-title">📚 Learning Resources</div>
+                        <div class="resource-links">
+                            <a href="#" class="resource-link">Python.org Tutorial</a>
+                            <a href="#" class="resource-link">Automate Boring Stuff</a>
+                            <a href="#" class="resource-link">Python File I/O Guide</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="phase">
+                <div class="phase-header" onclick="togglePhase('phase2')">
+                    <h2 class="phase-title">🌐 Phase 2: Web APIs & HTTP</h2>
+                    <span class="phase-duration">2-3 weeks</span>
+                </div>
+                <div class="collapse-content expanded" id="phase2">
+                    <div class="skills-grid">
+                        <div class="skill-item" onclick="toggleSkill(this)">
+                            <input type="checkbox" class="skill-checkbox">
+                            <div class="skill-name">HTTP Requests</div>
+                            <div class="skill-description">Using requests library for API calls</div>
+                        </div>
+                        <div class="skill-item" onclick="toggleSkill(this)">
+                            <input type="checkbox" class="skill-checkbox">
+                            <div class="skill-name">JSON Handling</div>
+                            <div class="skill-description">Parsing API responses and data structures</div>
+                        </div>
+                        <div class="skill-item" onclick="toggleSkill(this)">
+                            <input type="checkbox" class="skill-checkbox">
+                            <div class="skill-name">Authentication</div>
+                            <div class="skill-description">API keys and OAuth for IBM Watson services</div>
+                        </div>
+                        <div class="skill-item" onclick="toggleSkill(this)">
+                            <input type="checkbox" class="skill-checkbox">
+                            <div class="skill-name">Rate Limiting</div>
+                            <div class="skill-description">Handling API rate limits and retries</div>
+                        </div>
+                    </div>
+                    <div class="milestone">🎯 Milestone: Successfully call a public API and process the response</div>
+                    <div class="resources">
+                        <div class="resources-title">📚 Learning Resources</div>
+                        <div class="resource-links">
+                            <a href="#" class="resource-link">Requests Documentation</a>
+                            <a href="#" class="resource-link">REST API Tutorial</a>
+                            <a href="#" class="resource-link">JSON in Python</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="phase">
+                <div class="phase-header" onclick="togglePhase('phase3')">
+                    <h2 class="phase-title">🧠 Phase 3: IBM Watson Integration</h2>
+                    <span class="phase-duration">3-4 weeks</span>
+                </div>
+                <div class="collapse-content expanded" id="phase3">
+                    <div class="skills-grid">
+                        <div class="skill-item" onclick="toggleSkill(this)">
+                            <input type="checkbox" class="skill-checkbox">
+                            <div class="skill-name">IBM Cloud Setup</div>
+                            <div class="skill-description">Account creation and service provisioning</div>
+                        </div>
+                        <div class="skill-item" onclick="toggleSkill(this)">
+                            <input type="checkbox" class="skill-checkbox">
+                            <div class="skill-name">Watson SDK</div>
+                            <div class="skill-description">Installing and configuring watson-developer-cloud</div>
+                        </div>
+                        <div class="skill-item" onclick="toggleSkill(this)">
+                            <input type="checkbox" class="skill-checkbox">
+                            <div class="skill-name">Watsonx Granite LLM</div>
+                            <div class="skill-description">Text rewriting with tone adaptation</div>
+                        </div>
+                        <div class="skill-item" onclick="toggleSkill(this)">
+                            <input type="checkbox" class="skill-checkbox">
+                            <div class="skill-name">Watson Text-to-Speech</div>
+                            <div class="skill-description">Converting text to high-quality audio</div>
+                        </div>
+                        <div class="skill-item" onclick="toggleSkill(this)">
+                            <input type="checkbox" class="skill-checkbox">
+                            <div class="skill-name">Prompt Engineering</div>
+                            <div class="skill-description">Crafting effective prompts for tone conversion</div>
+                        </div>
+                        <div class="skill-item" onclick="toggleSkill(this)">
+                            <input type="checkbox" class="skill-checkbox">
+                            <div class="skill-name">Prompt Chaining</div>
+                            <div class="skill-description">Sequential prompts for better results</div>
+                        </div>
+                    </div>
+                    <div class="milestone">🎯 Milestone: Create a command-line tool that rewrites text and generates audio</div>
+                    <div class="resources">
+                        <div class="resources-title">📚 Learning Resources</div>
+                        <div class="resource-links">
+                            <a href="#" class="resource-link">IBM Watson Docs</a>
+                            <a href="#" class="resource-link">Watsonx Guide</a>
+                            <a href="#" class="resource-link">TTS API Reference</a>
+                            <a href="#" class="resource-link">Prompt Engineering</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="phase">
+                <div class="phase-header" onclick="togglePhase('phase4')">
+                    <h2 class="phase-title">🎨 Phase 4: Streamlit Frontend</h2>
+                    <span class="phase-duration">2-3 weeks</span>
+                </div>
+                <div class="collapse-content expanded" id="phase4">
+                    <div class="skills-grid">
+                        <div class="skill-item" onclick="toggleSkill(this)">
+                            <input type="checkbox" class="skill-checkbox">
+                            <div class="skill-name">Streamlit Basics</div>
+                            <div class="skill-description">Layout, widgets, and user interaction</div>
+                        </div>
+                        <div class="skill-item" onclick="toggleSkill(this)">
+                            <input type="checkbox" class="skill-checkbox">
+                            <div class="skill-name">File Upload Widget</div>
+                            <div class="skill-description">Handling .txt file uploads in Streamlit</div>
+                        </div>
+                        <div class="skill-item" onclick="toggleSkill(this)">
+                            <input type="checkbox" class="skill-checkbox">
+                            <div class="skill-name">Text Areas & Display</div>
+                            <div class="skill-description">Side-by-side text comparison interface</div>
+                        </div>
+                        <div class="skill-item" onclick="toggleSkill(this)">
+                            <input type="checkbox" class="skill-checkbox">
+                            <div class="skill-name">Audio Player</div>
+                            <div class="skill-description">Embedding audio playback in Streamlit</div>
+                        </div>
+                        <div class="skill-item" onclick="toggleSkill(this)">
+                            <input type="checkbox" class="skill-checkbox">
+                            <div class="skill-name">Download Buttons</div>
+                            <div class="skill-description">Enabling MP3 file downloads</div>
+                        </div>
+                        <div class="skill-item" onclick="toggleSkill(this)">
+                            <input type="checkbox" class="skill-checkbox">
+                            <div class="skill-name">Session State</div>
+                            <div class="skill-description">Managing app state across interactions</div>
+                        </div>
+                    </div>
+                    <div class="milestone">🎯 Milestone: Build a working Streamlit prototype of EchoVerse</div>
+                    <div class="resources">
+                        <div class="resources-title">📚 Learning Resources</div>
+                        <div class="resource-links">
+                            <a href="#" class="resource-link">Streamlit Docs</a>
+                            <a href="#" class="resource-link">File Upload Tutorial</a>
+                            <a href="#" class="resource-link">Audio in Streamlit</a>
+                            <a href="#" class="resource-link">Session State Guide</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="phase">
+                <div class="phase-header" onclick="togglePhase('phase5')">
+                    <h2 class="phase-title">🏗️ Phase 5: Integration & Polish</h2>
+                    <span class="phase-duration">3-4 weeks</span>
+                </div>
+                <div class="collapse-content expanded" id="phase5">
+                    <div class="skills-grid">
+                        <div class="skill-item" onclick="toggleSkill(this)">
+                            <input type="checkbox" class="skill-checkbox">
+                            <div class="skill-name">Code Organization</div>
+                            <div class="skill-description">Modular code structure and clean architecture</div>
+                        </div>
+                        <div class="skill-item" onclick="toggleSkill(this)">
+                            <input type="checkbox" class="skill-checkbox">
+                            <div class="skill-name">Error Handling UI</div>
+                            <div class="skill-description">User-friendly error messages and validation</div>
+                        </div>
+                        <div class="skill-item" onclick="toggleSkill(this)">
+                            <input type="checkbox" class="skill-checkbox">
+                            <div class="skill-name">Progress Indicators</div>
+                            <div class="skill-description">Loading states for API calls</div>
+                        </div>
+                        <div class="skill-item" onclick="toggleSkill(this)">
+                            <input type="checkbox" class="skill-checkbox">
+                            <div class="skill-name">Audio Processing</div>
+                            <div class="skill-description">Handling different audio formats and quality</div>
+                        </div>
+                        <div class="skill-item" onclick="toggleSkill(this)">
+                            <input type="checkbox" class="skill-checkbox">
+                            <div class="skill-name">Performance Optimization</div>
+                            <div class="skill-description">Caching and efficient API usage</div>
+                        </div>
+                        <div class="skill-item" onclick="toggleSkill(this)">
+                            <input type="checkbox" class="skill-checkbox">
+                            <div class="skill-name">Testing</div>
+                            <div class="skill-description">Unit tests for core functionality</div>
+                        </div>
+                    </div>
+                    <div class="milestone">🎯 Milestone: Complete, polished EchoVerse application ready for users</div>
+                    <div class="resources">
+                        <div class="resources-title">📚 Learning Resources</div>
+                        <div class="resource-links">
+                            <a href="#" class="resource-link">Python Testing</a>
+                            <a href="#" class="resource-link">Code Organization</a>
+                            <a href="#" class="resource-link">Performance Tips</a>
+                            <a href="#" class="resource-link">Streamlit Deploy</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="phase">
+                <div class="phase-header" onclick="togglePhase('phase6')">
+                    <h2 class="phase-title">🚀 Phase 6: Deployment & Advanced Features</h2>
+                    <span class="phase-duration">2-3 weeks</span>
+                </div>
+                <div class="collapse-content expanded" id="phase6">
+                    <div class="skills-grid">
+                        <div class="skill-item" onclick="toggleSkill(this)">
+                            <input type="checkbox" class="skill-checkbox">
+                            <div class="skill-name">Streamlit Cloud</div>
+                            <div class="skill-description">Deploying your app to the cloud</div>
+                        </div>
+                        <div class="skill-item" onclick="toggleSkill(this)">
+                            <input type="checkbox" class="skill-checkbox">
+                            <div class="skill-name">Environment Variables</div>
+                            <div class="skill-description">Secure API key management in production</div>
+                        </div>
+                        <div class="skill-item" onclick="toggleSkill(this)">
+                            <input type="checkbox" class="skill-checkbox">
+                            <div class="skill-name">User Analytics</div>
+                            <div class="skill-description">Basic usage tracking and metrics</div>
+                        </div>
+                        <div class="skill-item" onclick="toggleSkill(this)">
+                            <input type="checkbox" class="skill-checkbox">
+                            <div class="skill-name">Additional Voices</div>
+                            <div class="skill-description">Expanding voice options and customization</div>
+                        </div>
+                        <div class="skill-item" onclick="toggleSkill(this)">
+                            <input type="checkbox" class="skill-checkbox">
+                            <div class="skill-name">Batch Processing</div>
+                            <div class="skill-description">Handling multiple files or large texts</div>
+                        </div>
+                        <div class="skill-item" onclick="toggleSkill(this)">
+                            <input type="checkbox" class="skill-checkbox">
+                            <div class="skill-name">Documentation</div>
+                            <div class="skill-description">User guides and developer documentation</div>
+                        </div>
+                    </div>
+                    <div class="milestone">🎯 Milestone: EchoVerse is live and accessible to users worldwide!</div>
+                    <div class="resources">
+                        <div class="resources-title">📚 Learning Resources</div>
+                        <div class="resource-links">
+                            <a href="#" class="resource-link">Streamlit Deploy</a>
+                            <a href="#" class="resource-link">Environment Secrets</a>
+                            <a href="#" class="resource-link">Documentation Best Practices</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function togglePhase(phaseId) {
+            const content = document.getElementById(phaseId);
+            content.classList.toggle('expanded');
+        }
+        
+        function toggleSkill(skillItem) {
+            const checkbox = skillItem.querySelector('.skill-checkbox');
+            checkbox.checked = !checkbox.checked;
+            
+            if (checkbox.checked) {
+                skillItem.classList.add('completed');
+            } else {
+                skillItem.classList.remove('completed');
+            }
+            
+            updateProgress();
+        }
+        
+        function updateProgress() {
+            const totalSkills = document.querySelectorAll('.skill-item').length;
+            const completedSkills = document.querySelectorAll('.skill-item.completed').length;
+            const percentage = Math.round((completedSkills / totalSkills) * 100);
+            
+            document.getElementById('overallProgress').style.width = percentage + '%';
+            document.getElementById('progressText').textContent = percentage + '% Complete';
+            document.getElementById('completedSkills').textContent = completedSkills;
+            
+            // Save progress to localStorage
+            const progress = Array.from(document.querySelectorAll('.skill-checkbox')).map(cb => cb.checked);
+            try {
+                localStorage.setItem('echoverse-progress', JSON.stringify(progress));
+            } catch(e) {
+                // Handle case where localStorage isn't available
+            }
+        }
+        
+        // Load progress from localStorage
+        function loadProgress() {
+            try {
+                const saved = localStorage.getItem('echoverse-progress');
+                if (saved) {
+                    const progress = JSON.parse(saved);
+                    const skillItems = document.querySelectorAll('.skill-item');
+                    progress.forEach((completed, index) => {
+                        if (completed && skillItems[index]) {
+                            skillItems[index].classList.add('completed');
+                            skillItems[index].querySelector('.skill-checkbox').checked = true;
+                        }
+                    });
+                    updateProgress();
+                }
+            } catch(e) {
+                // Handle case where localStorage isn't available
+            }
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProgress();
+        });
+    </script>
+</body>
+</html>
